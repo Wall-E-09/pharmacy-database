@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-center">Каталог товарів</h1>
+<table class="table table-striped mt-4">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Назва</th>
+            <th>Ціна</th>
+            <th>Кількість</th>
+            <th>Дія</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product[0] }}</td>
+            <td>{{ product[1] }}</td>
+            <td>{{ product[2] }} грн</td>
+            <td>
+                {% if product[3] > 0 %}
+                    {{ product[3] }} шт.
+                {% else %}
+                    <span class="text-danger">Закінчився</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if product[3] > 0 %}
+                <form method="POST" action="/add_to_cart/{{ product[0] }}">
+                    <input type="number" name="quantity" value="1" min="1" class="form-control mb-2" required>
+                    <button type="submit" class="btn btn-primary btn-sm">Додати до кошика</button>
+                </form>
+                {% else %}
+                <button class="btn btn-secondary btn-sm" disabled>Недоступний</button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

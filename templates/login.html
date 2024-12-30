@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-center">Вхід у систему</h1>
+<div class="d-flex justify-content-center">
+    <form method="POST" class="w-50 mt-4">
+        <div class="mb-3">
+            <label for="username" class="form-label">Ім'я користувача</label>
+            <input type="text" name="username" class="form-control" id="username" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Пароль</label>
+            <input type="password" name="password" class="form-control" id="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Увійти</button>
+    </form>
+</div>
+{% endblock %}

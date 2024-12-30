@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-center">Оформлення замовлення</h1>
+<form method="POST" action="{{ url_for('checkout') }}">
+    <div class="mb-3">
+        <label for="customer_name" class="form-label">Ім'я</label>
+        <input type="text" class="form-control" id="customer_name" name="customer_name" required>
+    </div>
+    <div class="mb-3">
+        <label for="customer_email" class="form-label">Електронна пошта</label>
+        <input type="email" class="form-control" id="customer_email" name="customer_email" required>
+    </div>
+    <h3>Ваші товари:</h3>
+    <ul class="list-group mb-3">
+        {% for item in cart %}
+        <li class="list-group-item">
+            {{ item.name }} ({{ item.quantity }} шт.) - {{ item.price * item.quantity }} грн
+        </li>
+        {% endfor %}
+    </ul>
+    <h4 class="text-end">Загальна сума: {{ total_price }} грн</h4>
+    <button type="submit" class="btn btn-primary">Підтвердити замовлення</button>
+</form>
+{% endblock %}

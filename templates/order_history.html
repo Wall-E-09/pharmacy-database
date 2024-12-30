@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-center">Історія замовлень</h1>
+<table class="table table-striped mt-4">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Дата</th>
+            <th>Товар</th>
+            <th>Кількість</th>
+            <th>Загальна сума</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order[0] }}</td>
+            <td>{{ order[1] }}</td>
+            <td>{{ order[4] }}</td>
+            <td>{{ order[3] }}</td>
+            <td>{{ order[2] }} грн</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('catalog') }}" class="btn btn-primary mt-4">Повернутися до каталогу</a>
+{% endblock %}

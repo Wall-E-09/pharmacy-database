@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-center">Кошик</h1>
+
+<table class="table table-striped mt-4">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Назва</th>
+            <th>Ціна</th>
+            <th>Кількість</th>
+            <th>Видалити</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>
+                <a href="{{ url_for('remove_from_cart', product_id=item.id) }}" class="btn btn-danger btn-sm">Видалити</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3 class="text-end">Загальна сума: {{ total_price }} грн</h3>
+
+<div class="d-flex justify-content-between">
+    <a href="{{ url_for('catalog') }}" class="btn btn-primary">Повернутися до покупок</a>
+    <a href="{{ url_for('checkout') }}" class="btn btn-success">Оформити замовлення</a>
+</div>
+{% endblock %}
